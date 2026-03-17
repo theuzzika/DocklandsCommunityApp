@@ -9,6 +9,8 @@ package docklandscommunityapp.adt;
  * @author matheus
  */
 public class IssueManager {
+    
+    // static counter id
     // management > adt
     // management > insert,edit and delete
     // management >  search/history

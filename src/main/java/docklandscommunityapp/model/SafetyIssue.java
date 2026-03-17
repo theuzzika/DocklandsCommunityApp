@@ -9,5 +9,14 @@ package docklandscommunityapp.model;
  * @author matheus
  */
 public class SafetyIssue extends Issue {
-    
+
+    public SafetyIssue(String description, int severity, String dateIssue, String address) {
+        super(description, severity, dateIssue, address);
+    }
+
+    @Override
+    public String toString() {
+        return "Safety Issue :"
+                + super.toString();
+    }
 }

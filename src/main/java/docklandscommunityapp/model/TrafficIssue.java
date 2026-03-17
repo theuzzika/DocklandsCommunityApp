@@ -10,4 +10,14 @@ package docklandscommunityapp.model;
  */
 public class TrafficIssue extends Issue {
     
+    public TrafficIssue(String description, int severity, String dateIssue, String address) {
+        super(description, severity, dateIssue, address);
+    }
+
+    @Override
+    public String toString() {
+        return "Traffic Issue :"
+                + super.toString();
+    }
+
 }
