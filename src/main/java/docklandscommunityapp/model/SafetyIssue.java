@@ -16,7 +16,7 @@ public class SafetyIssue extends Issue {
 
     @Override
     public String toString() {
-        return "Safety Issue :"
+        return "Issue type: Safety"
                 + super.toString();
     }
 }

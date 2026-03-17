@@ -60,8 +60,8 @@ public class Issue implements Report {
         return resolved;
     }
 
-    public void setResolvedTrue() {
-        this.resolved = true;
+    public void setResolved(boolean bool) {
+        this.resolved = bool;
     }
 
     @Override

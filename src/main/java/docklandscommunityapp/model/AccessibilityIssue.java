@@ -16,7 +16,7 @@ public class AccessibilityIssue extends Issue {
 
     @Override
     public String toString() {
-        return "Accessibility Issue :"
+        return "Issue type: Accessibility"
                 + super.toString();
     }
 

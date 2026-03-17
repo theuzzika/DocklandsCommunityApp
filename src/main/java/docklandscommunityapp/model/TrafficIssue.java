@@ -16,7 +16,7 @@ public class TrafficIssue extends Issue {
 
     @Override
     public String toString() {
-        return "Traffic Issue :"
+        return "Issue type: Traffic"
                 + super.toString();
     }
 
