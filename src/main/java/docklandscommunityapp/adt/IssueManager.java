@@ -29,17 +29,17 @@ public class IssueManager {
         this.resolvedIssues = new Stack<>();
     }
 
-    public void addIssue(String description, int severity, String date, String address, String type) {
+    public void addIssue(String description, String severity, String date, String address, String type) {
 
         switch (type) {
             case "Traffic":
-                issue = new TrafficIssue(description, severity, date, address);
+                issue = new TrafficIssue(description, severity, date, address, type);
                 break;
             case "Accessibility":
-                issue = new AccessibilityIssue(description, severity, date, address);
+                issue = new AccessibilityIssue(description, severity, date, address, type);
                 break;
             case "Safety":
-                issue = new SafetyIssue(description, severity, date, address);
+                issue = new SafetyIssue(description, severity, date, address, type);
                 break;
             default:
                 System.out.println("invalid type.");
@@ -62,7 +62,7 @@ public class IssueManager {
         }
     }
 
-    public Issue updateIssue(int id, String description, String address, String dateIssue, int severity) {
+    public Issue updateIssue(int id, String description, String address, String dateIssue, String severity, String type) {
 
         Issue auxIssue = crudMap.get(id);
         if (auxIssue != null) {
@@ -71,6 +71,7 @@ public class IssueManager {
             auxIssue.setAddress(address);
             auxIssue.setDateIssue(dateIssue);
             auxIssue.setSeverity(severity);
+            auxIssue.setType(type);
 
             return auxIssue;
         } else {
@@ -95,14 +96,14 @@ public class IssueManager {
             return null;
         }
     }
-    
-    public Issue undoLastResolvedIssue(){
+
+    public Issue undoLastResolvedIssue() {
         Issue auxIssue = resolvedIssues.pop();
         auxIssue.setResolved(false);
-        
+
         currentIssues.add(auxIssue);
         crudMap.put(auxIssue.getId(), auxIssue);
-        
+
         return auxIssue;
     }
 
@@ -115,17 +116,29 @@ public class IssueManager {
         return sb.toString();
     }
 
-    public String displayResolvedIssues() {
+    public String displayRecentToOldestResolvedIssues() {
         StringBuilder sb = new StringBuilder();
         Issue auxIssue;
-        
+
         // from the oldest to the most recent
-        for (int i = resolvedIssues.size()-1; i >= 0; i--){
+        for (int i = resolvedIssues.size() - 1; i >= 0; i--) {
             auxIssue = resolvedIssues.get(i);
             sb.append(auxIssue.toString());
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    public ArrayList<Issue> getArray() {
+        return currentIssues;
+    }
+
+    public HashMap<Integer, Issue> getMap() {
+        return crudMap;
+    }
+
+    public Stack<Issue> getStack() {
+        return resolvedIssues;
     }
 
 }

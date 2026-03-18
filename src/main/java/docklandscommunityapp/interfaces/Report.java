@@ -17,6 +17,6 @@ public interface Report {
     String getAddress ();
     
     // severity 1-2-3 (low-moderate-high)
-    int getSeverity ();
+    String getSeverity ();
     
 }

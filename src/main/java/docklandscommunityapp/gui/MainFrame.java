@@ -4,19 +4,36 @@
  */
 package docklandscommunityapp.gui;
 
+import docklandscommunityapp.adt.IssueManager;
+import docklandscommunityapp.model.Issue;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author matheus
  */
 public class MainFrame extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainFrame.class.getName());
+    private DefaultListModel<String> model;
+    private IssueManager manager;
 
     /**
      * Creates new form MainFrame
      */
+    // constructor
     public MainFrame() {
+        manager = new IssueManager();;
+
         initComponents();
+
+        setTitle("Docklands Community App");
+        setSize(1000, 800);
+        setLocationRelativeTo(null);
+
+        model = new DefaultListModel<>();
+        currentIssue_jList.setModel(model);
     }
 
     /**
@@ -28,47 +45,422 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        title_jLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        description_jLabel = new javax.swing.JLabel();
+        subTitle_jLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        desription_jTextArea = new javax.swing.JTextArea();
+        date_jLabel = new javax.swing.JLabel();
+        date_jTextField = new javax.swing.JTextField();
+        severity_jLabel = new javax.swing.JLabel();
+        issueType_jLabel = new javax.swing.JLabel();
+        issueType_jComboBox = new javax.swing.JComboBox<>();
+        address_jLabel = new javax.swing.JLabel();
+        address_jTextField = new javax.swing.JTextField();
+        severity_jComboBox = new javax.swing.JComboBox<>();
+        addIssue_jButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        currentIssue_jList = new javax.swing.JList<>();
+        listTitle_jLabel = new javax.swing.JLabel();
+        editSeverity_jComboBox = new javax.swing.JComboBox<>();
+        editDescription_jLabel = new javax.swing.JLabel();
+        editIssueType_jComboBox = new javax.swing.JComboBox<>();
+        editAddress_jLabel = new javax.swing.JLabel();
+        editDate_jLabel = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        editDesription_jTextArea = new javax.swing.JTextArea();
+        editAddress_jTextField = new javax.swing.JTextField();
+        editIssueType_jLabel = new javax.swing.JLabel();
+        editDate_jTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        updateIssue_jButton = new javax.swing.JButton();
+        editSeverity_jLabel1 = new javax.swing.JLabel();
+        resolved_jCheckBox = new javax.swing.JCheckBox();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1000, 800));
+        getContentPane().setLayout(null);
+
+        title_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        title_jLabel.setText("Docklands Community App");
+        title_jLabel.setFocusable(false);
+        getContentPane().add(title_jLabel);
+        title_jLabel.setBounds(260, 30, 470, 60);
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        description_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        description_jLabel.setText("Description :");
+
+        subTitle_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        subTitle_jLabel.setText("New Issue");
+        subTitle_jLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        desription_jTextArea.setColumns(20);
+        desription_jTextArea.setLineWrap(true);
+        desription_jTextArea.setRows(5);
+        jScrollPane1.setViewportView(desription_jTextArea);
+
+        date_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        date_jLabel.setText("Date :");
+
+        date_jTextField.setToolTipText("dd/mm/yyyy");
+
+        severity_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        severity_jLabel.setText("Severity :");
+
+        issueType_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        issueType_jLabel.setText("Issue type :");
+
+        issueType_jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Accessibility", "Traffic", "Safety" }));
+        issueType_jComboBox.setSelectedIndex(-1);
+        issueType_jComboBox.setToolTipText("");
+        issueType_jComboBox.setBorder(null);
+
+        address_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        address_jLabel.setText("Address :");
+
+        severity_jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        severity_jComboBox.setSelectedIndex(-1);
+        severity_jComboBox.setToolTipText("1 = low  \n5 = high");
+        severity_jComboBox.setBorder(null);
+
+        addIssue_jButton.setText("Add");
+        addIssue_jButton.setSize(new java.awt.Dimension(72, 23));
+        addIssue_jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addIssue_jButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(severity_jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(address_jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(date_jLabel)
+                                    .addComponent(issueType_jLabel))
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(issueType_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(date_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(address_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(severity_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(description_jLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addIssue_jButton)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(subTitle_jLabel)))
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(subTitle_jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(issueType_jLabel)
+                    .addComponent(issueType_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(date_jLabel)
+                    .addComponent(date_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(address_jLabel)
+                    .addComponent(address_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(severity_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(severity_jLabel))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(description_jLabel))
+                .addGap(26, 26, 26)
+                .addComponent(addIssue_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(30, 130, 420, 600);
+
+        currentIssue_jList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        currentIssue_jList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        currentIssue_jList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                currentIssue_jListMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(currentIssue_jList);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(470, 170, 510, 154);
+
+        listTitle_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        listTitle_jLabel.setText("Recent Issues ");
+        getContentPane().add(listTitle_jLabel);
+        listTitle_jLabel.setBounds(630, 130, 170, 30);
+
+        editSeverity_jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        editSeverity_jComboBox.setSelectedIndex(-1);
+        editSeverity_jComboBox.setToolTipText("1 = low  \n5 = high");
+        editSeverity_jComboBox.setBorder(null);
+        getContentPane().add(editSeverity_jComboBox);
+        editSeverity_jComboBox.setBounds(610, 520, 72, 21);
+
+        editDescription_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        editDescription_jLabel.setText("Description :");
+        getContentPane().add(editDescription_jLabel);
+        editDescription_jLabel.setBounds(520, 560, 79, 17);
+
+        editIssueType_jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Accessibility", "Traffic", "Safety" }));
+        editIssueType_jComboBox.setSelectedIndex(-1);
+        editIssueType_jComboBox.setToolTipText("");
+        editIssueType_jComboBox.setBorder(null);
+        getContentPane().add(editIssueType_jComboBox);
+        editIssueType_jComboBox.setBounds(610, 400, 183, 21);
+
+        editAddress_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        editAddress_jLabel.setText("Address :");
+        getContentPane().add(editAddress_jLabel);
+        editAddress_jLabel.setBounds(520, 480, 60, 17);
+
+        editDate_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        editDate_jLabel.setText("Date :");
+        getContentPane().add(editDate_jLabel);
+        editDate_jLabel.setBounds(520, 440, 37, 17);
+
+        editDesription_jTextArea.setColumns(20);
+        editDesription_jTextArea.setLineWrap(true);
+        editDesription_jTextArea.setRows(5);
+        jScrollPane3.setViewportView(editDesription_jTextArea);
+
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(610, 560, 281, 120);
+        getContentPane().add(editAddress_jTextField);
+        editAddress_jTextField.setBounds(610, 480, 279, 23);
+
+        editIssueType_jLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        editIssueType_jLabel.setText("Issue type :");
+        getContentPane().add(editIssueType_jLabel);
+        editIssueType_jLabel.setBounds(520, 400, 72, 17);
+
+        editDate_jTextField.setToolTipText("dd/mm/yyyy");
+        getContentPane().add(editDate_jTextField);
+        editDate_jTextField.setBounds(610, 440, 100, 23);
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel1.setText("Edit Issue");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(640, 350, 120, 30);
+
+        updateIssue_jButton.setText("Update");
+        updateIssue_jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateIssue_jButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(updateIssue_jButton);
+        updateIssue_jButton.setBounds(610, 690, 73, 40);
+
+        editSeverity_jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        editSeverity_jLabel1.setText("Severity :");
+        getContentPane().add(editSeverity_jLabel1);
+        editSeverity_jLabel1.setBounds(520, 520, 60, 17);
+
+        resolved_jCheckBox.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        resolved_jCheckBox.setText("Resolved");
+        resolved_jCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resolved_jCheckBoxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(resolved_jCheckBox);
+        resolved_jCheckBox.setBounds(750, 520, 90, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void addIssue_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addIssue_jButtonActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
+            // check if not null values
+            checkIssueFormFields();
+
+            // get values from input
+            String type = issueType_jComboBox.getSelectedItem().toString();
+            String date = date_jTextField.getText();
+            String address = address_jTextField.getText();
+            String severity = severity_jComboBox.getSelectedItem().toString();;
+            String description = desription_jTextArea.getText();
+
+            // new objt add to array/map
+            manager.addIssue(description, severity, date, address, type);
+            JOptionPane.showMessageDialog(null, "Successfuly added");
+
+            refreshDisplayedList();
+            clearIssueForm();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error creating and adding objt");
+        }
+    }//GEN-LAST:event_addIssue_jButtonActionPerformed
+
+    private void currentIssue_jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_currentIssue_jListMouseClicked
+
+        int i = currentIssue_jList.getSelectedIndex();
+
+        if (i != -1) {
+            Issue auxIssue = manager.getArray().get(i);
+
+            // retrive info from objt selected in JLisst
+            editIssueType_jComboBox.setSelectedItem(auxIssue.getType());
+            editDate_jTextField.setText(auxIssue.getDateIssue());
+            editAddress_jTextField.setText(auxIssue.getAddress());
+            editSeverity_jComboBox.setSelectedItem(auxIssue.getSeverity());
+            editDesription_jTextArea.setText(auxIssue.getDescription());
+
+        }
+
+    }//GEN-LAST:event_currentIssue_jListMouseClicked
+
+    private void updateIssue_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateIssue_jButtonActionPerformed
+        int i = currentIssue_jList.getSelectedIndex();
+
+        if (i != -1) {
+            Issue auxIssue = manager.getArray().get(i);
+
+            // check if not null values
+            checkUpdateFormFields();
+
+            // get values from input
+            int id = auxIssue.getId();
+            String type = editIssueType_jComboBox.getSelectedItem().toString();
+            String date = editDate_jTextField.getText();
+            String address = editAddress_jTextField.getText();
+            String severity = editSeverity_jComboBox.getSelectedItem().toString();
+            String description = editDesription_jTextArea.getText();
+
+            // update objt
+            manager.updateIssue(id, description, address, date, severity, type);
+            JOptionPane.showMessageDialog(null, "Successfuly updated");
+
+            if (resolved_jCheckBox.isSelected()) {
+                manager.resolvedIssue(auxIssue.getId());
+            }
+
+            refreshDisplayedList();
+            clearUpdateForm();
+        }
+    }//GEN-LAST:event_updateIssue_jButtonActionPerformed
+
+    private void resolved_jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resolved_jCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resolved_jCheckBoxActionPerformed
+
+    private boolean checkIssueFormFields() {
+        if (issueType_jComboBox.getSelectedIndex() == -1
+                || severity_jComboBox.getSelectedIndex() == -1
+                || date_jTextField.getText().isEmpty()
+                || address_jTextField.getText().isEmpty()
+                || desription_jTextArea.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Please, fill up all fields");
+            return false;
+        }
+        return true;
     }
 
+    private boolean checkUpdateFormFields() {
+        if (editIssueType_jComboBox.getSelectedIndex() == -1
+                || editSeverity_jComboBox.getSelectedIndex() == -1
+                || editDate_jTextField.getText().isEmpty()
+                || editAddress_jTextField.getText().isEmpty()
+                || editDesription_jTextArea.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Please, fill up all fields");
+            return false;
+        }
+        return true;
+    }
+
+    private void refreshDisplayedList() {
+        model.clear();
+        for (Issue issue : manager.getArray()) {
+            model.addElement(issue.toString());
+        }
+    }
+
+    private void clearUpdateForm() {
+        editIssueType_jComboBox.setSelectedIndex(-1);
+        editDate_jTextField.setText("");
+        editAddress_jTextField.setText("");
+        editSeverity_jComboBox.setSelectedIndex(-1);
+        editDesription_jTextArea.setText("");
+        resolved_jCheckBox.setSelected(false);
+    }
+
+    private void clearIssueForm() {
+        issueType_jComboBox.setSelectedIndex(-1);
+        date_jTextField.setText("");
+        address_jTextField.setText("");
+        severity_jComboBox.setSelectedIndex(-1);
+        desription_jTextArea.setText("");
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addIssue_jButton;
+    private javax.swing.JLabel address_jLabel;
+    private javax.swing.JTextField address_jTextField;
+    private javax.swing.JList<String> currentIssue_jList;
+    private javax.swing.JLabel date_jLabel;
+    private javax.swing.JTextField date_jTextField;
+    private javax.swing.JLabel description_jLabel;
+    private javax.swing.JTextArea desription_jTextArea;
+    private javax.swing.JLabel editAddress_jLabel;
+    private javax.swing.JTextField editAddress_jTextField;
+    private javax.swing.JLabel editDate_jLabel;
+    private javax.swing.JTextField editDate_jTextField;
+    private javax.swing.JLabel editDescription_jLabel;
+    private javax.swing.JTextArea editDesription_jTextArea;
+    private javax.swing.JComboBox<String> editIssueType_jComboBox;
+    private javax.swing.JLabel editIssueType_jLabel;
+    private javax.swing.JComboBox<String> editSeverity_jComboBox;
+    private javax.swing.JLabel editSeverity_jLabel1;
+    private javax.swing.JComboBox<String> issueType_jComboBox;
+    private javax.swing.JLabel issueType_jLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel listTitle_jLabel;
+    private javax.swing.JCheckBox resolved_jCheckBox;
+    private javax.swing.JComboBox<String> severity_jComboBox;
+    private javax.swing.JLabel severity_jLabel;
+    private javax.swing.JLabel subTitle_jLabel;
+    private javax.swing.JLabel title_jLabel;
+    private javax.swing.JButton updateIssue_jButton;
     // End of variables declaration//GEN-END:variables
 }
